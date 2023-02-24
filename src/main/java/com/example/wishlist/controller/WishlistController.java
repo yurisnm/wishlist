@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 public class WishlistController {
+
+    private static final Logger logger = LoggerFactory.getLogger(WishlistController.class);
 
     private final WishlistService wishlistService;
 
@@ -29,6 +33,7 @@ public class WishlistController {
      */
     @GetMapping
     public List<WishlistItem> getAllWishlistItems() {
+        logger.info("Received request to retrieve all wishlist items.");
         return wishlistService.getAllItems();
     }
 
@@ -41,6 +46,7 @@ public class WishlistController {
      */
     @GetMapping("/{id}")
     public Optional<WishlistItem> getWishlistItemById(@PathVariable String id) throws WishlistItemNotFoundException {
+        logger.info("Received request to retrieve wishlist item with ID: {}", id);
         return wishlistService.getItemById(id);
     }
 
@@ -52,6 +58,7 @@ public class WishlistController {
      */
     @PostMapping("/add")
     public WishlistItem addWishlistItem(@RequestBody WishlistItem wishlistItem) {
+        logger.info("Received request to add wishlist item with name: {}", wishlistItem.getName());
         return wishlistService.addItem(wishlistItem);
     }
 
@@ -63,6 +70,7 @@ public class WishlistController {
      */
     @DeleteMapping("/remove/{id}")
     public void removeWishlistItem(@PathVariable String id) throws WishlistItemNotFoundException {
+        logger.info("Received request to remove wishlist item with ID: {}", id);
         wishlistService.removeItem(id);
     }
 

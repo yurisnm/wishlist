@@ -7,6 +7,12 @@ public class WishlistItem {
     private String id;
     private String name;
 
+    /**
+     * Constructor used by Jackson to deserialize JSON data into a WishlistItem object.
+     *
+     * @param name The name of the wishlist item.
+     * @param id The ID of the wishlist item.
+     */
     @JsonCreator
     public WishlistItem(@JsonProperty("name") String name, @JsonProperty("id") String id) {
         this.name = name;
