@@ -52,6 +52,21 @@ To run the tests, navigate to the root directory and run the following command:
 ```
 mvn test
 ```
+# Using DOCKER
+
+## Generating image
+
+Make sure you are in the root directory at the same place that your Dockerfile is.
+```
+docker build -t my-image-name .
+```
+
+## Running container
+```
+docker run -p 8080:8080 my-image-name
+```
+
+With this you are able to access the service on `http://localhost:8080`
 
 # License
 This project is licensed under the MIT License.
